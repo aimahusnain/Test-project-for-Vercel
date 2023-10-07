@@ -6,7 +6,7 @@ import _ from "lodash";
 import serverless from "serverless-http";
 
 const app = express();
-const port = 9000;
+const port = 4000;
 
 app.set('view engine', 'ejs');
 
@@ -156,23 +156,6 @@ List.findOneAndUpdate({ name: listName }, { $pull: { items: { _id: checkedItemId
   
 });
 
-app.listen(9000, function() {
+app.listen(4000, function() {
   console.log(`Server started on port ${port}`);
 });
-
-
-// {
-//     "version": 1,
-//     "builds": [
-//         {
-//             "src": "index.js",
-//             "use": "@now/node"
-//         }
-//     ],
-//     "routes": [
-//         {
-//             "src": "/(.*)",
-//             "dest": "index.js"
-//         }
-//     ]
-// }
