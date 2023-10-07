@@ -164,3 +164,7 @@ app.get("/work", function(req,res){
 app.get("/about", function(req, res){
   res.render("about");
 });
+
+app.listen(9000, () => {
+  console.log(`Server started on port ${port}`);
+});
