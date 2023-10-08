@@ -3,12 +3,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import _ from "lodash";
+
 import serverless from "serverless-http";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.set('view engine', 'ejs');
+const ejs = require("ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -50,13 +52,17 @@ const List = mongoose.model("List", listSchema);
 app.get("/", async function (req, res) {
   try {
     const foundItems = await Item.find({});
-  
+    
+    console.log(foundItems);
     
     if (foundItems.length === 0 ) {
       Item.insertMany(defaultItems)
         .then(() => {
+          console.log("Pass");
         })
         .catch((err) => {
+          console.log("Fail");
+          console.error(err);
         });
       res.redirect("/");
     } else {
@@ -128,9 +134,12 @@ app.post("/delete", async function (req, res) {
     try {
     const result = await Item.findByIdAndDelete(checkedItemId);
     if (result) {
+      console.log("Successfully deleted your task");
     } else {
+      console.log("Task not found");
     }
   } catch (err) {
+    console.error("Error deleting task:", err);
   }
   res.redirect("/");  
   } else {
@@ -149,5 +158,6 @@ List.findOneAndUpdate({ name: listName }, { $pull: { items: { _id: checkedItemId
   
 });
 
-app.listen(4000, function() {
+app.listen(port, function () {
+  console.log(`Server is running on port ${port}`);
 });
