@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import _ from "lodash";
+import ejs from 'ejs';
 
 const app = express();
 const port = process.env.PORT || 4000;
