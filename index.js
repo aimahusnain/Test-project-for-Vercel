@@ -10,7 +10,6 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.set('view engine', 'ejs');
-const ejs = require("ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
