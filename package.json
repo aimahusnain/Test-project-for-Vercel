@@ -14,7 +14,12 @@
     "lodash": "^4.17.21",
     "mongo": "^0.1.0",
     "mongoose": "^7.5.4",
+    "mongodb": "5.0.0",
     "serverless-http": "^3.2.0"
   },
-  "description": ""
+  "description": "",
+
+  "engines": {
+    "node": "16.20.1"
+}
 }
